@@ -26,8 +26,6 @@ export const storeEvent = async (event) => {
     console.log("formatDate",typeof event.start);
     console.log("formatDate content", Date.parse(event.start));
     console.log("storing api time format:", event.duration)
-  // const result = { start:event.start, end: event.end, duration:event.duration};
-
     return await axios.post(`${baseURL}/add`, {
         method: 'POST',
         header : {

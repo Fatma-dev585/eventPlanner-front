@@ -2,8 +2,6 @@
   <div class="app">
     <h1>Planner</h1>
     <hr>
-    
-
   </div>
   <router-view></router-view>
 </template>
@@ -25,7 +23,6 @@ export default {
   text-align: left;
   color: #2c3e50;
 }
-
 button {
   padding: 5px 15px;
   border: none;

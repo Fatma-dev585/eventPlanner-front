@@ -18,10 +18,8 @@ const routes = [
             path: '/events',
             name:'eventsPage',
             component: eventsPage,
-        }
-        
+        }    
 ];
-
 const router = new createRouter({
     history : createWebHistory(),
     routes,

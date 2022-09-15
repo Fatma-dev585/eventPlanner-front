@@ -11,50 +11,55 @@
           <th>End</th>
           <th>Duration</th>
           <th>Reservation</th>
-       
         </tr>
       </thead>
       <tbody>
         <tr v-for="item in availibilities" :key="item[0]">
           <td>{{ item[0] }}</td>
           <td>{{ item[1] }}</td>
-          <td>{{ item[2].slice(0,10) }} at {{ item[2].slice(11,16) }} </td>
-          <td>{{ item[3].slice(0,10) }} at {{ item[3].slice(11,16) }} </td>
+          <td>{{ item[2].slice(0, 10) }} at {{ item[2].slice(11, 16) }}</td>
+          <td>{{ item[3].slice(0, 10) }} at {{ item[3].slice(11, 16) }}</td>
           <td>{{ item[4] }}</td>
-      
-          <td >
+
+          <td>
             <div>
-              <Modal @close="toggleModal" :modalActive="modalActive" >
+              <Modal @close="toggleModal" :modalActive="modalActive">
                 <div class="modal-content">
                   <form @submit="submitForm()">
                     <div class="fields-container">
                       <label for="start">Start *</label>
-                  
-                       <input
-                       v-show="showStart"
+
+                      <input
+                        v-show="showStart"
                         type="text"
                         id="start"
                         disabled
-                     v-model="formValues.start"
+                        v-model="formValues.start"
                       />
-                    
-                        <input
+
+                      <input
                         v-show="!showStart"
                         type="datetime-local"
-                   
                         id="start"
-                        
-                     v-model="formValues.start"
+                        v-model="formValues.start"
                       />
-                      <img @click="handleStart" v-show="!showStart" src="/icons/redo_icon.png">
-                      <img @click="handleStart" v-show="showStart" class="edit-icon" src="/icons/edit_iconn.png">
-                      <!-- <p @click="handleStart" >{{showStart === true? ' Edit' : ' Redo'}}</p> -->
+                      <img
+                        @click="handleStart"
+                        v-show="!showStart"
+                        src="/icons/redo_icon.png"
+                      />
+                      <img
+                        @click="handleStart"
+                        v-show="showStart"
+                        class="edit-icon"
+                        src="/icons/edit_iconn.png"
+                      />
                     </div>
-                    
-                    <div class="fields-container" >
+
+                    <div class="fields-container">
                       <label for="end">End *</label>
-                       <input
-                       v-show="showEnd"
+                      <input
+                        v-show="showEnd"
                         type="text"
                         id="end"
                         disabled
@@ -62,16 +67,23 @@
                       />
 
                       <input
-                       v-show="!showEnd"
+                        v-show="!showEnd"
                         type="datetime-local"
                         class="datepicker"
                         id="end"
-                        
                         v-model="formValues.end"
                       />
-                    <!-- <p @click="handleEnd" >{{showEnd === true? ' Edit' : ' Redo'}}</p> -->
-                    <img @click="handleEnd" v-show="!showEnd" src="/icons/redo_icon.png">
-                    <img @click="handleEnd" v-show="showEnd" class="edit-icon" src="/icons/edit_iconn.png">
+                      <img
+                        @click="handleEnd"
+                        v-show="!showEnd"
+                        src="/icons/redo_icon.png"
+                      />
+                      <img
+                        @click="handleEnd"
+                        v-show="showEnd"
+                        class="edit-icon"
+                        src="/icons/edit_iconn.png"
+                      />
                     </div>
 
                     <div class="fields-container">
@@ -84,17 +96,15 @@
                       />
                     </div>
 
-
-                    <div >
+                    <div>
                       <button>Submit</button>
                     </div>
                   </form>
                 </div>
               </Modal>
-              <div @click="changeFormId(item[0],item[2],item[3])">
+              <div @click="changeFormId(item[0], item[2], item[3])">
                 <button @click="toggleModal" type="button">Reservation</button>
               </div>
-              
             </div>
           </td>
         </tr>
@@ -102,7 +112,9 @@
     </table>
 
     <div class="return-container">
-      <router-link to="/events" class="btn btn-info btn-sm">Other Events</router-link>
+      <router-link to="/events" class="btn btn-info btn-sm"
+        >Other Events</router-link
+      >
     </div>
   </div>
 </template>
@@ -111,8 +123,6 @@
 import axios from "axios";
 import Modal from "../components/reservation/reserv-Modall-component.vue";
 import { ref } from "vue";
-
-
 
 export default {
   name: "reservation-page",
@@ -131,14 +141,14 @@ export default {
     };
 
     const handleStart = () => {
-        showStart.value = !showStart.value;
-        console.log(showStart);
-    }
+      showStart.value = !showStart.value;
+      console.log(showStart);
+    };
 
     const handleEnd = () => {
-        showEnd.value = !showEnd.value;
-        console.log(showEnd);
-    }
+      showEnd.value = !showEnd.value;
+      console.log(showEnd);
+    };
 
     return {
       availibilities: [],
@@ -162,7 +172,6 @@ export default {
     let result = await axios.get(
       `http://localhost:8081/giskard/event/availableSlots/${this.$route.params.id}`
     );
-    // const result = await fetch(`http://localhost:8081/giskard/event/availableSlots/2`);
     console.log("result.data:", result.data);
     this.availibilities = result.data;
   },
@@ -177,13 +186,12 @@ export default {
     },
 
     async changeFormId(id, start, end) {
-     
-    this.formId = id;
-    console.log("formId: ", this.formId);
-    this.formValues.start = start;
-    this.formValues.end = end;
-      
-    console.log("formValues: ", this.formValues);
+      this.formId = id;
+      console.log("formId: ", this.formId);
+      this.formValues.start = start;
+      this.formValues.end = end;
+
+      console.log("formValues: ", this.formValues);
     },
   },
 };
@@ -196,49 +204,41 @@ export default {
 .modal-container {
   display: flex;
   justify-content: center;
-  
   .modal-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
-    
   }
-  }
-  .fields-container{
-    display: flex;
-    flex-direction: row;    
-    height: 35px;
-   label {
+}
+.fields-container {
+  display: flex;
+  flex-direction: row;
+  height: 35px;
+  label {
     color: black;
     font-weight: bold;
     line-height: 24px;
     font-size: 15px;
     display: block;
     width: 100px;
-    // padding-right: 20px;
-    
-    }
-    p {
+  }
+  p {
     color: black;
     line-height: 24px;
     float: right;
     padding-left: 20px;
-    
-    }
-    input {
-        width: 280px;
-        border: 1px solid rgb(225, 222, 222,1.7);
-      
-    }
-    img {
-      align-self: center;
-      width:18px;
-       height:18px;
-    }
   }
-  .edit-icon {
-    margin-left: -22px;
+  input {
+    width: 280px;
+    border: 1px solid rgb(225, 222, 222, 1.7);
   }
-
+  img {
+    align-self: center;
+    width: 18px;
+    height: 18px;
+  }
+}
+.edit-icon {
+  margin-left: -22px;
+}
 </style>
