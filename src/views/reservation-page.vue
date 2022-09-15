@@ -41,13 +41,14 @@
                         <input
                         v-show="!showStart"
                         type="datetime-local"
-                        class="datepicker"
+                   
                         id="start"
                         
                      v-model="formValues.start"
                       />
-                      <p @click="handleStart" >{{showStart === true? ' Edit' : ' Redo'}}</p>
-                      
+                      <img @click="handleStart" v-show="!showStart" src="/icons/redo_icon.png">
+                      <img @click="handleStart" v-show="showStart" class="edit-icon" src="/icons/edit_iconn.png">
+                      <!-- <p @click="handleStart" >{{showStart === true? ' Edit' : ' Redo'}}</p> -->
                     </div>
                     
                     <div class="fields-container" >
@@ -68,7 +69,9 @@
                         
                         v-model="formValues.end"
                       />
-                    <p @click="handleEnd" >{{showEnd === true? ' Edit' : ' Redo'}}</p>
+                    <!-- <p @click="handleEnd" >{{showEnd === true? ' Edit' : ' Redo'}}</p> -->
+                    <img @click="handleEnd" v-show="!showEnd" src="/icons/redo_icon.png">
+                    <img @click="handleEnd" v-show="showEnd" class="edit-icon" src="/icons/edit_iconn.png">
                     </div>
 
                     <div class="fields-container">
@@ -193,38 +196,27 @@ export default {
 .modal-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  
   .modal-content {
     display: flex;
     flex-direction: column;
+    align-items: center;
     
-
-    h1,
-    p {
-      margin-bottom: 16px;
-    }
-    h1 {
-      font-size: 32px;
-    }
-    p {
-      font-size: 18px;
-    }
     
   }
   }
   .fields-container{
     display: flex;
-    flex-direction: row;
-    flex-direction: row;
-    
+    flex-direction: row;    
     height: 35px;
    label {
-    color: #d81434;
+    color: black;
     font-weight: bold;
     line-height: 24px;
+    font-size: 15px;
     display: block;
     width: 100px;
-    padding-right: 20px;
+    // padding-right: 20px;
     
     }
     p {
@@ -236,10 +228,17 @@ export default {
     }
     input {
         width: 280px;
-       // border-color: rgb(225, 222, 222,1.7);
         border: 1px solid rgb(225, 222, 222,1.7);
       
     }
+    img {
+      align-self: center;
+      width:18px;
+       height:18px;
+    }
+  }
+  .edit-icon {
+    margin-left: -22px;
   }
 
 </style>

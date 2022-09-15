@@ -3,7 +3,7 @@ import axios from 'axios';
 const baseURL = 'http://localhost:8081/giskard/availibility';
 
 export const fetchEvents = async () => {
- const response = await axios.get(`http://localhost:8081/giskard/event/availableSlots/2`)
+ const response = await axios.get(`http://localhost:8081/giskard/event/availableSlots/36`)
  console.log("response:",response.data);
  const a = [];
 

@@ -1,13 +1,13 @@
 import { createWebHistory, createRouter } from "vue-router";
-import availibilityPage from "../views/availibility-page.vue";
+import calendarAvailibilityPage from "../views/calendar-availibility-page.vue";
 import reservationPage from "../views/reservation-page.vue";
 import eventsPage from "../views/events-page.vue";
 
 const routes = [
         {
-            path: '/availibility',
-            name:'availibilityPage',
-            component: availibilityPage,
+            path: '/calendar-availibility',
+            name:'calendarAvailibilityPage',
+            component: calendarAvailibilityPage,
         },
         {
             path: '/reservation/:id',

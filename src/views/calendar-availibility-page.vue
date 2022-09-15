@@ -31,7 +31,7 @@ const options = reactive({
         cal.unselect()
         cal.addEvent({
             id: `${id.value}`,
-            title: `New Event ${id.value}`,
+            title: `New Availibility ${id.value}`,
             start: arg.start,
             end: arg.end,
             allDay: false
@@ -48,30 +48,11 @@ const options = reactive({
     events: [],
     eventAdd: (arg) => {
         createEvent({
-           // id: arg.event.id,
-            //title: arg.event.title,
             start: Date.parse(arg.event.start),
             end: Date.parse(arg.event.end),
             duration:10,
-           // allDay: arg.event.allDay,
 
         });
-    //     axios.post('http://localhost:8081/giskard/availibility/add', {
-    //     method: 'POST',
-    //     header : {
-    //         'Content-Type': 'application/json',
-    //     },
-    //     body : JSON.stringify({
-    //         id: arg.event.id,
-    //         //title: arg.event.title,
-    //         start: arg.event.start,
-    //         end: arg.event.end,
-    //         duration:10,
-    //        // allDay: arg.event.allDay,
-
-    //     })
-    // }
-    // );
 
     },
     eventChange: (arg) => {
@@ -98,8 +79,17 @@ watch(getEvents, () => {
 </script>
 
 <template >
-<div>
-    <!-- <Fullcalendar ></Fullcalendar> -->
-    <Fullcalendar v-bind:options="options" ></Fullcalendar>
+<div class="container">
+    <Fullcalendar v-bind:options="options" class="calendar" ></Fullcalendar>
 </div>
 </template>
+<style scoped>
+.container {
+    width:800px;
+    height:800;
+
+}
+.calendar {
+    background-color: beige;
+}
+</style>
